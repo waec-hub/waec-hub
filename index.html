@@ -3,148 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHOENIX NEWS | Home</title>
+    <title>XTREME HUB | Live Scores & Nigeria News</title>
+    
+    <script src="https://pl29376660.profitablecpmratenetwork.com/56/40/25/5640255b2df172766967b5fde6f55dc3.js"></script>
     <style>
         :root {
-            --phoenix-blue: #0047ba;
-            --phoenix-red: #ff3b30;
-            --bg-lite: #f0f2f5;
+            --xt-orange: #ff4d00;
+            --xt-black: #0a0a0a;
+            --xt-dark-gray: #151515;
+            --live-green: #22c55e;
         }
-        body { font-family: 'Roboto', sans-serif; background: var(--bg-lite); margin: 0; padding-bottom: 60px; }
-        
-        /* Fixed Phoenix Header */
-        .header { background: var(--phoenix-blue); color: white; padding: 15px 15px 10px; position: sticky; top: 0; z-index: 2000; }
-        .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .brand { font-size: 1.2rem; font-weight: 900; }
-        
-        /* App Shortcuts Grid */
-        .app-grid {
-            background: white;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            padding: 20px 10px;
-            gap: 15px;
-            border-bottom: 1px solid #ddd;
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #000; 
+            margin: 0; 
+            padding-bottom: 90px; 
+            color: #fff; 
+            overflow-x: hidden;
         }
-        .app-item { text-align: center; text-decoration: none; color: #333; font-size: 0.7rem; font-weight: 500; }
-        .app-icon {
-            width: 48px;
-            height: 48px;
+
+        /* HEADER & LOGO */
+        .header { 
+            background: var(--xt-black); 
+            padding: 20px; 
+            text-align: center; 
+            border-bottom: 3px solid var(--xt-orange); 
+            position: sticky; 
+            top: 0; 
+            z-index: 3000; 
+        }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; letter-spacing: -2px; text-transform: uppercase; }
+        .logo span { color: var(--xt-orange); }
+
+        /* LIVE CHANNEL PROMO BAR */
+        .channel-alert {
+            background: linear-gradient(90deg, var(--xt-orange), #ff8c00);
+            color: white; padding: 12px; text-align: center; font-weight: 900; font-size: 0.75rem;
+            text-transform: uppercase; text-decoration: none; display: block;
+        }
+
+        /* LIVE FOOTBALL TRACKER BOX */
+        .live-cam-box {
+            background: #111;
+            margin: 10px;
             border-radius: 12px;
-            margin: 0 auto 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid #333;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
+        .live-header {
+            background: #222;
+            padding: 10px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+        }
+        .live-dot { height: 8px; width: 8px; background: var(--live-green); border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* CATEGORY SCROLLER */
+        .cat-bar { 
+            display: flex; overflow-x: auto; padding: 12px; background: #111; gap: 10px; 
+            position: sticky; top: 83px; z-index: 2000; scrollbar-width: none; 
+        }
+        .cat-bar::-webkit-scrollbar { display: none; }
+        .cat { 
+            padding: 8px 20px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; 
+            background: #222; color: #777; white-space: nowrap; border: 1px solid #333; cursor: pointer; 
+        }
+        .cat.active { background: var(--xt-orange); color: white; border-color: var(--xt-orange); }
 
         .container { padding: 10px; max-width: 500px; margin: auto; }
 
-        /* News Feed Card (Repeated to create length) */
-        .news-card { background: white; margin-bottom: 8px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .news-content { padding: 12px; display: flex; gap: 12px; }
-        .news-text { flex: 2; }
-        .news-thumb { flex: 1; height: 80px; background: #eee; border-radius: 6px; position: relative; overflow: hidden; }
-        .news-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .headline { font-size: 1rem; font-weight: bold; line-height: 1.3; margin: 0 0 8px; color: #1c1e21; }
-        .meta { font-size: 0.7rem; color: #65676b; display: flex; align-items: center; gap: 5px; }
+        /* NEWS FEED CARDS */
+        .feed-item { 
+            background: var(--xt-dark-gray); margin-bottom: 15px; border-radius: 12px; 
+            overflow: hidden; border-left: 5px solid #333; 
+        }
+        .feed-link { text-decoration: none; color: inherit; display: block; }
+        .feed-img-container { position: relative; width: 100%; height: 180px; background: #222; overflow: hidden; }
+        .feed-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-content { padding: 15px; }
+        .badge { font-size: 0.6rem; font-weight: 900; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; display: inline-block; color: #fff; }
+        .headline { font-size: 1rem; font-weight: 700; line-height: 1.4; color: #fff; margin: 0; }
 
-        /* Video Card */
-        .video-card { background: #000; border-radius: 8px; margin-bottom: 8px; position: relative; height: 200px; color: white; overflow: hidden; }
-        .video-overlay { position: absolute; bottom: 0; padding: 15px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; box-sizing: border-box; }
-        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.8; }
-
-        /* Footer Loader */
-        .loader { text-align: center; padding: 20px; color: var(--phoenix-blue); font-weight: bold; font-size: 0.9rem; }
+        /* BOTTOM NAV */
+        .bottom-nav { 
+            position: fixed; bottom: 0; width: 100%; background: #000; 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            padding: 15px 0; border-top: 1px solid #222; z-index: 4000; 
+        }
+        .nav-item { text-align: center; font-size: 0.65rem; font-weight: 900; color: #444; text-decoration: none; text-transform: uppercase; }
+        .nav-item.active { color: var(--xt-orange); }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="top-row">
-        <div class="brand">PHOENIX</div>
-        <div>🔍</div>
-    </div>
-</div>
+<a href="https://whatsapp.com/channel/0029VbCJc5k3wtbBwVHEIN2z" target="_blank" class="channel-alert">
+    📢 JOIN THE XTREME HUB WHATSAPP CHANNEL 🚀
+</a>
 
-<div class="app-grid">
-    <a href="https://facebook.com" class="app-item">
-        <div class="app-icon" style="background: #1877F2;"><img src="https://img.icons8.com/color/48/facebook-new.png" width="30"></div>
-        <span>Facebook</span>
-    </a>
-    <a href="https://google.com" class="app-item">
-        <div class="app-icon" style="background: white;"><img src="https://img.icons8.com/color/48/google-logo.png" width="30"></div>
-        <span>Google</span>
-    </a>
-    <a href="https://youtube.com" class="app-item">
-        <div class="app-icon" style="background: white;"><img src="https://img.icons8.com/color/48/youtube-play.png" width="30"></div>
-        <span>YouTube</span>
-    </a>
-    <a href="https://www.google.com/chrome/" class="app-item">
-        <div class="app-icon" style="background: white;"><img src="https://img.icons8.com/color/48/chrome.png" width="30"></div>
-        <span>Chrome</span>
-    </a>
+<div class="header">
+    <div class="logo">X<span>TREME</span></div>
 </div>
 
 <div class="container">
-    
-    <div class="video-card">
-        <div style="width:100%; height:100%; background: linear-gradient(45deg, #0047ba, #ff3b30); opacity: 0.6;"></div>
-        <div class="play-icon">▶️</div>
-        <div class="video-overlay">
-            <div style="font-weight: bold;">LIVE: WAEC 2026 Registration Tutorial</div>
-            <div style="font-size: 0.7rem;">Trending • 12k Views</div>
+    <div class="live-cam-box">
+        <div class="live-header">
+            <span><span class="live-dot"></span> LIVE FOOTBALL TRACKER</span>
+            <span style="color: var(--xt-orange);">UPDATES EVERY 60S</span>
         </div>
+        <iframe src="https://www.scorebat.com/embed/livescore/" frameborder="0" width="100%" height="300" allowfullscreen allow='autoplay; fullscreen' style="width:100%; height:300px; overflow:hidden;" class="_scorebatEmbeddedPlayer_"></iframe>
     </div>
-
-    <div class="news-card">
-        <div class="news-content">
-            <div class="news-text">
-                <p class="headline">New Syllabus: 5 Major Changes for 2026 Candidates</p>
-                <div class="meta"><span>🔥 Trending</span> • 10m ago</div>
-            </div>
-            <div class="news-thumb" style="background: #ff3b30; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">NEWS</div>
-        </div>
-    </div>
-
-    <div class="news-card">
-        <div class="news-content">
-            <div class="news-text">
-                <p class="headline">Entertainment: Top TikTok Songs for Study Motivation</p>
-                <div class="meta"><span>🎭 Viral</span> • 1h ago</div>
-            </div>
-            <div class="news-thumb" style="background: #8b5cf6; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">MUSIC</div>
-        </div>
-    </div>
-
-    <div class="news-card">
-        <div class="news-content">
-            <div class="news-text">
-                <p class="headline">Breaking: How to get A1 in Mathematics 2026</p>
-                <div class="meta"><span>📖 Guide</span> • 3h ago</div>
-            </div>
-            <div class="news-thumb" style="background: #22c55e; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">MATH</div>
-        </div>
-    </div>
-
-    <div class="news-card">
-        <div class="news-content">
-            <div class="news-text">
-                <p class="headline">Private Candidates: Deadline for Registration Extended</p>
-                <div class="meta"><span>📢 Update</span> • 5h ago</div>
-            </div>
-            <div class="news-thumb" style="background: #3b82f6; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">INFO</div>
-        </div>
-    </div>
-
-    <div class="loader">
-        🔄 Loading more news...
-    </div>
-
 </div>
 
-<script src="https://pl29376660.profitablecpmratenetwork.com/56/40/25/5640255b2df172766967b5fde6f55dc3.js"></script>
-<script src="https://pl29376659.profitablecpmratenetwork.com/53/26/fa/5326facdec20ef14f35719252a7d6a4d.js"></script>
+<div class="cat-bar">
+    <div class="cat active" onclick="filterX('all')">LATEST</div>
+    <div class="cat" onclick="filterX('FOOTBALL')">FOOTBALL</div>
+    <div class="cat" onclick="filterX('EXAMS')">JAMB/WAEC</div>
+    <div class="cat" onclick="filterX('POLICE')">SECURITY</div>
+    <div class="cat" onclick="filterX('MUSIC')">MUSIC</div>
+    <div class="cat" onclick="filterX('GAMES')">GAMES</div>
+</div>
 
+<div class="container">
+    <div id="xtreme-main">
+        <div style="text-align: center; padding: 50px; color: var(--xt-orange); font-weight: 900;">SYNCHRONIZING LIVE DATA...</div>
+    </div>
+</div>
+
+<div class="bottom-nav">
+    <a href="#" class="nav-item active" onclick="location.reload()">🏠<br>HOME</a>
+    <a href="#" class="nav-item">💰<br>EARN</a>
+    <a href="https://efacility.jamb.gov.ng/" class="nav-item">📚<br>EXAMS</a>
+    <a href="https://whatsapp.com/channel/0029VbCJc5k3wtbBwVHEIN2z" target="_blank" class="nav-item" style="color: #25d366;">📢<br>CHANNEL</a>
+</div>
+
+<script>
+    const xtSources = [
+        { name: "GOAL NIGERIA", type: "FOOTBALL", color: "#22c55e", url: "https://www.goal.com/en-ng/feeds/news" }, 
+        { name: "JAMB UPDATES", type: "EXAMS", color: "#0047ba", url: "https://myschool.ng/news/rss" }, 
+        { name: "NPF NEWS", type: "POLICE", color: "#002d62", url: "https://www.npf.gov.ng/news/feed/" },
+        { name: "PUNCH NEWS", type: "NATIONAL", color: "#cc0000", url: "https://punchng.com/feed/" },
+        { name: "NOTJUSTOK", type: "MUSIC", color: "#8b5cf6", url: "https://notjustok.com/feed/" },
+        { name: "GAMINGBOLT", type: "GAMES", color: "#10b981", url: "https://gamingbolt.com/feed" }
+    ];
+
+    let masterArticles = [];
+
+    async function initXtreme() {
+        masterArticles = [];
+        for (const s of xtSources) {
+            try {
+                const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.url)}`);
+                const data = await response.json();
+                if (data.items) {
+                    data.items.forEach(item => {
+                        item.xtSrc = s.name;
+                        item.xtType = s.type;
+                        item.xtColor = s.color;
+                        masterArticles.push(item);
+                    });
+                }
+            } catch (err) { console.warn("Sync slow for " + s.name); }
+        }
+        masterArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        displayX(masterArticles);
+    }
+
+    function displayX(items) {
+        const feedDiv = document.getElementById('xtreme-main');
+        feedDiv.innerHTML = '';
+        items.slice(0, 45).forEach(a => {
+            let thumb = a.thumbnail || "";
+            if (!thumb && a.description) {
+                const imgMatch = a.description.match(/<img[^>]+src="([^">]+)"/);
+                if (imgMatch) thumb = imgMatch[1];
+            }
+            
+            let mediaHtml = thumb ? `
+                <div class="feed-img-container">
+                    <img src="${thumb}" class="feed-img" onerror="this.parentElement.style.display='none'">
+                </div>` : '';
+
+            feedDiv.innerHTML += `
+                <div class="feed-item" style="border-left-color: ${a.xtColor}">
+                    <a href="${a.link}" class="feed-link" target="_blank">
+                        ${mediaHtml}
+                        <div class="card-content">
+                            <span class="badge" style="background:${a.xtColor}">${a.xtSrc}</span>
+                            <p class="headline">${a.title}</p>
+                        </div>
+                    </a>
+                </div>`;
+        });
+    }
+
+    function filterX(type) {
+        document.querySelectorAll('.cat').forEach(c => c.classList.remove('active'));
+        event.target.classList.add('active');
+        if(type === 'all') { displayX(masterArticles); } 
+        else { displayX(masterArticles.filter(item => item.xtType === type)); }
+    }
+
+    // Auto-refresh every 5 minutes to keep news automatic
+    setInterval(initXtreme, 300000);
+    initXtreme();
+</script>
+
+<script type='text/javascript' src='https://pl29376659.profitablecpmratenetwork.com/53/26/fa/5326facdec20ef14f35719252a7d6a4d.js'></script>
 </body>
 </html>
