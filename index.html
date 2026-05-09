@@ -3,178 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAEC Success Hub 2026 | Official Exam News & Timetable</title>
+    <title>PHOENIX NEWS | Home</title>
     <style>
         :root {
-            --primary-blue: #1e40af;
-            --accent-gold: #facc15;
-            --bg-gray: #f1f5f9;
-            --text-main: #0f172a;
-            --news-red: #dc2626;
+            --phoenix-blue: #0047ba;
+            --phoenix-red: #ff3b30;
+            --bg-lite: #f0f2f5;
         }
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-            background: var(--bg-gray); 
-            margin: 0; 
-            color: var(--text-main); 
-        }
+        body { font-family: 'Roboto', sans-serif; background: var(--bg-lite); margin: 0; padding-bottom: 60px; }
         
-        /* News Ticker */
-        .ticker-wrap {
-            background: var(--news-red);
-            color: white;
-            padding: 8px 0;
-            font-size: 0.85rem;
-            font-weight: bold;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .ticker {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-            padding-left: 100%;
-        }
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-            color: white;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            border-bottom: 5px solid var(--accent-gold);
-        }
+        /* Fixed Phoenix Header */
+        .header { background: var(--phoenix-blue); color: white; padding: 15px 15px 10px; position: sticky; top: 0; z-index: 2000; }
+        .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .brand { font-size: 1.2rem; font-weight: 900; }
         
-        .container { padding: 1.2rem; max-width: 500px; margin: auto; }
-        
-        /* News Section */
-        .news-card {
+        /* App Shortcuts Grid */
+        .app-grid {
             background: white;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 20px 10px;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .app-item { text-align: center; text-decoration: none; color: #333; font-size: 0.7rem; font-weight: 500; }
+        .app-icon {
+            width: 48px;
+            height: 48px;
             border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1.5rem;
-            border-left: 5px solid var(--news-red);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .news-item {
-            border-bottom: 1px solid #f1f5f9;
-            padding: 10px 0;
-        }
-        .news-item:last-child { border: none; }
-        .date-tag {
-            font-size: 0.7rem;
-            background: #fee2e2;
-            color: #b91c1c;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .main-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .card-header {
-            background: #f8fafc;
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-        .card-body { padding: 1.2rem; }
+        .container { padding: 10px; max-width: 500px; margin: auto; }
 
-        .btn-main {
-            display: block;
-            background: #25d366;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 0 #16a34a;
-        }
-        .declaration-box {
-            background: #fffbeb;
-            border: 1px dashed var(--accent-gold);
-            padding: 1rem;
-            font-style: italic;
-            border-radius: 8px;
-        }
-        footer { text-align: center; padding: 2rem; color: #64748b; font-size: 0.75rem; }
+        /* News Feed Card (Repeated to create length) */
+        .news-card { background: white; margin-bottom: 8px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .news-content { padding: 12px; display: flex; gap: 12px; }
+        .news-text { flex: 2; }
+        .news-thumb { flex: 1; height: 80px; background: #eee; border-radius: 6px; position: relative; overflow: hidden; }
+        .news-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .headline { font-size: 1rem; font-weight: bold; line-height: 1.3; margin: 0 0 8px; color: #1c1e21; }
+        .meta { font-size: 0.7rem; color: #65676b; display: flex; align-items: center; gap: 5px; }
+
+        /* Video Card */
+        .video-card { background: #000; border-radius: 8px; margin-bottom: 8px; position: relative; height: 200px; color: white; overflow: hidden; }
+        .video-overlay { position: absolute; bottom: 0; padding: 15px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; box-sizing: border-box; }
+        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.8; }
+
+        /* Footer Loader */
+        .loader { text-align: center; padding: 20px; color: var(--phoenix-blue); font-weight: bold; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-<div class="ticker-wrap">
-    <div class="ticker">
-        ⚠️ URGENT: WAEC 2026 Registration Closing Soon • Official Timetable Release Date Announced • Get Daily Success Declarations Here • 
+<div class="header">
+    <div class="top-row">
+        <div class="brand">PHOENIX</div>
+        <div>🔍</div>
     </div>
 </div>
 
-<section class="hero">
-    <h1 style="margin: 0; font-size: 1.7rem;">WAEC Success Hub</h1>
-    <p style="opacity: 0.9;">2026 Examination News & Resource Portal</p>
-</section>
+<div class="app-grid">
+    <a href="https://facebook.com" class="app-item">
+        <div class="app-icon" style="background: #1877F2;"><img src="https://img.icons8.com/color/48/facebook-new.png" width="30"></div>
+        <span>Facebook</span>
+    </a>
+    <a href="https://google.com" class="app-item">
+        <div class="app-icon" style="background: white;"><img src="https://img.icons8.com/color/48/google-logo.png" width="30"></div>
+        <span>Google</span>
+    </a>
+    <a href="https://youtube.com" class="app-item">
+        <div class="app-icon" style="background: white;"><img src="https://img.icons8.com/color/48/youtube-play.png" width="30"></div>
+        <span>YouTube</span>
+    </a>
+    <a href="https://www.google.com/chrome/" class="app-item">
+        <div class="app-icon" style="background: white;"><img src="https://img.icons8.com/color/48/chrome.png" width="30"></div>
+        <span>Chrome</span>
+    </a>
+</div>
 
 <div class="container">
     
+    <div class="video-card">
+        <div style="width:100%; height:100%; background: linear-gradient(45deg, #0047ba, #ff3b30); opacity: 0.6;"></div>
+        <div class="play-icon">▶️</div>
+        <div class="video-overlay">
+            <div style="font-weight: bold;">LIVE: WAEC 2026 Registration Tutorial</div>
+            <div style="font-size: 0.7rem;">Trending • 12k Views</div>
+        </div>
+    </div>
+
     <div class="news-card">
-        <h3 style="margin-top:0; color: var(--news-red);">📰 Latest News Feed</h3>
-        
-        <div class="news-item">
-            <span class="date-tag">MAY 2026</span>
-            <p style="margin: 5px 0 0; font-size: 0.9rem; font-weight: bold;">WAEC Main Exams commence in 2 weeks. Ensure your photocard is ready.</p>
-        </div>
-
-        <div class="news-item">
-            <span class="date-tag">NEW</span>
-            <p style="margin: 5px 0 0; font-size: 0.9rem;">Practical sessions for Science students have been scheduled. Check your local center.</p>
-        </div>
-    </div>
-
-    <div class="main-card">
-        <div class="card-header">📖 Today's Success Declaration</div>
-        <div class="card-body">
-            <div class="declaration-box">
-                "I am calm and well-prepared. I will understand every question and answer with precision. Excellence is my only option."
+        <div class="news-content">
+            <div class="news-text">
+                <p class="headline">New Syllabus: 5 Major Changes for 2026 Candidates</p>
+                <div class="meta"><span>🔥 Trending</span> • 10m ago</div>
             </div>
+            <div class="news-thumb" style="background: #ff3b30; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">NEWS</div>
         </div>
     </div>
 
-    <div class="main-card">
-        <div class="card-header">📅 2026 Official Timetable</div>
-        <div class="card-body" style="text-align: center;">
-            <p style="font-size: 0.9rem;">The PDF version of the 2026 Timetable is now available for download.</p>
-            <a href="#" class="btn-main" style="background: var(--primary-blue); box-shadow: 0 4px 0 #172554;">
-                Download PDF Timetable
-            </a>
+    <div class="news-card">
+        <div class="news-content">
+            <div class="news-text">
+                <p class="headline">Entertainment: Top TikTok Songs for Study Motivation</p>
+                <div class="meta"><span>🎭 Viral</span> • 1h ago</div>
+            </div>
+            <div class="news-thumb" style="background: #8b5cf6; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">MUSIC</div>
         </div>
     </div>
 
-    <div class="main-card">
-        <div class="card-header">🚀 Join the Community</div>
-        <div class="card-body">
-            <a href="https://wa.me/?text=Get%20the%202026%20WAEC%20News%20and%20Timetable%20here:%20https://waec-hub.github.io/waec-hub/" class="btn-main">
-                Get Updates on WhatsApp
-            </a>
+    <div class="news-card">
+        <div class="news-content">
+            <div class="news-text">
+                <p class="headline">Breaking: How to get A1 in Mathematics 2026</p>
+                <div class="meta"><span>📖 Guide</span> • 3h ago</div>
+            </div>
+            <div class="news-thumb" style="background: #22c55e; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">MATH</div>
         </div>
+    </div>
+
+    <div class="news-card">
+        <div class="news-content">
+            <div class="news-text">
+                <p class="headline">Private Candidates: Deadline for Registration Extended</p>
+                <div class="meta"><span>📢 Update</span> • 5h ago</div>
+            </div>
+            <div class="news-thumb" style="background: #3b82f6; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">INFO</div>
+        </div>
+    </div>
+
+    <div class="loader">
+        🔄 Loading more news...
     </div>
 
 </div>
-
-<footer>
-    <p>&copy; 2026 WAEC Success Hub Portal</p>
-    <p>Connecting students to distinction.</p>
-</footer>
 
 <script src="https://pl29376660.profitablecpmratenetwork.com/56/40/25/5640255b2df172766967b5fde6f55dc3.js"></script>
 <script src="https://pl29376659.profitablecpmratenetwork.com/53/26/fa/5326facdec20ef14f35719252a7d6a4d.js"></script>
 
 </body>
-        </html>
+</html>
