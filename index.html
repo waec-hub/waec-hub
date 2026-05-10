@@ -1,54 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Monetag Verification -->
-<meta name="monetag" content="1f3f0ced961ed3bc29be6cc2b3a579a0">
+<title>Xtreme Hub - Nigeria News | WAEC | JAMB | EFCC | Breaking Updates</title>
 
-<title>Xtreme Hub - News & Updates</title>
+<meta name="description" content="Latest Nigeria breaking news, WAEC updates, JAMB results, EFCC news, Police recruitment and Africa trending stories.">
+<meta name="keywords" content="Nigeria news, WAEC, JAMB, EFCC, Police recruitment, Africa news, breaking news Nigeria">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Xtreme Hub - Viral News Platform">
+<meta property="og:description" content="Live Nigeria news, AI assistant and trending updates.">
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f4f4}
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
 
 header{
-background:#111;color:#fff;text-align:center;padding:20px
+background:#111827;
+padding:15px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:10;
 }
 
-header h1{color:#ff6600;margin:0}
+header h1{
+color:#38bdf8;
+margin:0;
+}
 
 nav{
-background:#ff6600;display:flex;justify-content:center;flex-wrap:wrap
-}
-
-nav a{
-color:white;padding:10px;text-decoration:none;font-weight:bold
+display:flex;
+justify-content:space-around;
+background:#1f2937;
+padding:10px;
+font-size:14px;
 }
 
 .container{
-display:flex;flex-wrap:wrap;padding:10px;gap:10px
+padding:10px;
 }
 
-.main{flex:2;min-width:300px}
-.side{flex:1;min-width:250px;background:white;padding:10px}
-
 .card{
-background:white;margin:10px 0;padding:10px;
-border-left:5px solid #ff6600
+background:#1e293b;
+padding:10px;
+margin:10px 0;
+border-radius:10px;
+border-left:4px solid #38bdf8;
 }
 
 .ad{
-background:#ddd;text-align:center;padding:10px;margin:10px 0
+background:#334155;
+text-align:center;
+padding:10px;
+margin:10px 0;
+border-radius:10px;
 }
 
-.ceo{
-background:white;padding:15px;margin:10px 0;
-border-left:5px solid #111
+.ai{
+background:#111827;
+padding:15px;
+border-radius:10px;
+border:1px solid #22c55e;
+margin-top:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#38bdf8;
+font-weight:bold;
+cursor:pointer;
 }
 
 footer{
-background:#111;color:white;text-align:center;padding:20px;margin-top:20px
+text-align:center;
+padding:20px;
+background:#111827;
+margin-top:20px;
 }
 </style>
 
@@ -58,79 +105,111 @@ background:#111;color:white;text-align:center;padding:20px;margin-top:20px
 
 <header>
 <h1>⚡ XTREME HUB</h1>
-<p>News • Education • Recruitment • Updates</p>
+<p>News • AI • Viral Updates</p>
 </header>
 
 <nav>
-<a href="#">Home</a>
-<a href="#">News</a>
-<a href="#">Recruitment</a>
-<a href="#">Education</a>
-<a href="#">Videos</a>
+<span>News</span>
+<span>AI</span>
+<span>Trending</span>
 </nav>
 
-<!-- TOP AD -->
-<div class="ad">
-  Ad Space (728x90 Banner)
-</div>
+<!-- 🔝 TOP AD -->
+<div class="ad">Top Banner Ad</div>
 
 <div class="container">
 
-<div class="main">
+<h2>🔥 Trending Nigeria & Africa News</h2>
+<div id="news"></div>
 
-<h2>📰 Latest News</h2>
+<!-- 📰 MID AD -->
+<div class="ad">🔥 Sponsored Content</div>
 
-<div class="card">Police Recruitment Update Released</div>
-<div class="card">JAMB Exam Guidelines Announced</div>
-<div class="card">EFCC New Fraud Arrest Report</div>
-<div class="card">Customs Recruitment Update</div>
-<div class="card">WAEC Timetable Released</div>
+<h2>🤖 AI Assistant</h2>
 
-<!-- MID AD -->
-<div class="ad">
-  Ad Space (In-Article Banner)
+<div class="ai">
+<input id="q" placeholder="Ask WAEC, JAMB, EFCC...">
+<button onclick="askAI()">Ask AI</button>
+<p id="a"></p>
 </div>
 
-<h2>🎥 Trending Videos</h2>
-<iframe width="100%" height="250"
-src="https://www.youtube.com/embed?listType=search&list=Nigeria news"
-allowfullscreen></iframe>
-
-<!-- CEO SECTION -->
-<div class="ceo">
-<h2>👨‍💼 About the CEO</h2>
-<p><strong>Founder:</strong> Xtreme Hub Media</p>
-<p><strong>Vision:</strong> To deliver fast, reliable, and real-time news updates on education, recruitment, and national events across Nigeria.</p>
-<p><strong>Mission:</strong> To become one of Nigeria’s leading digital news platforms providing accurate information to students and job seekers.</p>
-</div>
+<!-- 📲 SHARE VIRAL SYSTEM -->
+<button onclick="shareNews()">📲 Share This Site</button>
 
 </div>
 
-<div class="side">
-
-<h3>👮 Recruitment</h3>
-<p>Police</p>
-<p>EFCC</p>
-<p>Customs</p>
-<p>Immigration</p>
-
-<h3>🎓 Education</h3>
-<p>WAEC</p>
-<p>JAMB</p>
-<p>NECO</p>
-
-<!-- SIDE AD -->
-<div class="ad">
-  Ad Space (Sidebar Ad)
-</div>
-
-</div>
-
-</div>
+<!-- 🔻 BOTTOM AD -->
+<div class="ad">Bottom Banner Ad</div>
 
 <footer>
 © 2026 Xtreme Hub | All Rights Reserved
 </footer>
+
+<!-- 🌍 AUTO NEWS SYSTEM -->
+<script>
+async function loadNews(){
+
+const feeds = [
+"http://feeds.bbci.co.uk/news/world/africa/rss.xml",
+"https://www.aljazeera.com/xml/rss/all.xml"
+];
+
+let output = "";
+
+for(let f of feeds){
+try{
+let res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + f);
+let data = await res.json();
+
+data.items.slice(0,10).forEach(n=>{
+
+output += `
+<div class="card">
+<h3 style="margin:0;font-size:16px;">📰 ${n.title}</h3>
+
+<a href="${n.link}" target="_blank" style="color:#38bdf8;">
+Read full story
+</a>
+
+<br><br>
+
+<button onclick="shareNews()">Share 🔥</button>
+</div>
+`;
+});
+}catch(e){}
+}
+
+document.getElementById("news").innerHTML = output;
+}
+
+loadNews();
+setInterval(loadNews, 180000);
+</script>
+
+<!-- 🤖 AI SYSTEM -->
+<script>
+function askAI(){
+let q = document.getElementById("q").value.toLowerCase();
+let r = "";
+
+if(q.includes("waec")) r="WAEC is West African exam body.";
+else if(q.includes("jamb")) r="JAMB handles university exams in Nigeria.";
+else if(q.includes("efcc")) r="EFCC fights corruption in Nigeria.";
+else if(q.includes("police")) r="Police recruitment is officially announced.";
+else r="Ask about WAEC, JAMB, EFCC or Nigeria news.";
+
+document.getElementById("a").innerText = r;
+}
+</script>
+
+<!-- 📲 VIRAL SHARE SYSTEM -->
+<script>
+function shareNews(){
+let url = window.location.href;
+window.open("https://wa.me/?text=" + encodeURIComponent("Check this news: " + url));
+}
+</script>
 
 </body>
 </html>
