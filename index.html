@@ -1,215 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Xtreme Hub - Nigeria News | WAEC | JAMB | EFCC | Breaking Updates</title>
-
-<meta name="description" content="Latest Nigeria breaking news, WAEC updates, JAMB results, EFCC news, Police recruitment and Africa trending stories.">
-<meta name="keywords" content="Nigeria news, WAEC, JAMB, EFCC, Police recruitment, Africa news, breaking news Nigeria">
+<title>Xtreme Hub - Live News, AI, Music, Movies & Chat</title>
+<meta name="description" content="Xtreme Hub combines live Nigerian news, AI assistant, entertainment and community chat in one platform.">
+<meta name="keywords" content="Nigeria news, WAEC, JAMB, AI assistant, music, movies, chat">
 <meta name="robots" content="index, follow">
 
-<meta property="og:title" content="Xtreme Hub - Viral News Platform">
-<meta property="og:description" content="Live Nigeria news, AI assistant and trending updates.">
-
 <style>
+:root{
+  --bg:#313338;
+  --panel:#2b2d31;
+  --panel-2:#1e1f22;
+  --text:#f2f3f5;
+  --muted:#b5bac1;
+  --accent:#5865f2;
+  --green:#23a55a;
+  --border:#3f4147;
+}
+*{box-sizing:border-box}
 body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  height:100vh;
+  overflow:hidden;
 }
-
-header{
-background:#111827;
-padding:15px;
-text-align:center;
-position:sticky;
-top:0;
-z-index:10;
+.app{
+  display:flex;
+  height:100vh;
 }
-
-header h1{
-color:#38bdf8;
-margin:0;
+.sidebar{
+  width:240px;
+  background:var(--panel-2);
+  padding:16px;
+  overflow-y:auto;
 }
-
-nav{
-display:flex;
-justify-content:space-around;
-background:#1f2937;
-padding:10px;
-font-size:14px;
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:16px;
+  color:white;
 }
-
-.container{
-padding:10px;
+.tagline{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:20px;
 }
-
+.channel{
+  padding:10px 12px;
+  margin:4px 0;
+  border-radius:8px;
+  cursor:pointer;
+  color:var(--muted);
+}
+.channel:hover,
+.channel.active{
+  background:var(--accent);
+  color:white;
+}
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.header{
+  padding:16px;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+  font-weight:bold;
+}
+.content{
+  flex:1;
+  display:flex;
+  min-height:0;
+}
+.feed{
+  flex:1;
+  overflow-y:auto;
+  padding:20px;
+}
+.right{
+  width:340px;
+  background:var(--panel-2);
+  border-left:1px solid var(--border);
+  overflow-y:auto;
+  padding:16px;
+}
 .card{
-background:#1e293b;
-padding:10px;
-margin:10px 0;
-border-radius:10px;
-border-left:4px solid #38bdf8;
+  background:var(--panel);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:14px;
+  border:1px solid var(--border);
 }
-
-.ad{
-background:#334155;
-text-align:center;
-padding:10px;
-margin:10px 0;
-border-radius:10px;
+.card h3{
+  margin:0 0 8px;
+  font-size:18px;
 }
-
-.ai{
-background:#111827;
-padding:15px;
-border-radius:10px;
-border:1px solid #22c55e;
-margin-top:20px;
+.meta{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:10px;
 }
-
+.badge{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(88,101,242,.15);
+  color:#c9d2ff;
+  font-size:11px;
+  margin-bottom:8px;
+}
+a{
+  color:#7ab8ff;
+  text-decoration:none;
+}
+a:hover{text-decoration:underline}
+input,button{
+  width:100%;
+  border:none;
+  border-radius:10px;
+  padding:12px;
+  font-size:14px;
+}
 input{
-width:100%;
-padding:10px;
-border:none;
-border-radius:10px;
-margin-top:10px;
+  background:var(--panel);
+  color:white;
+  margin-bottom:10px;
 }
-
 button{
-width:100%;
-padding:10px;
-margin-top:10px;
-border:none;
-border-radius:10px;
-background:#38bdf8;
-font-weight:bold;
-cursor:pointer;
+  background:var(--accent);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
-
-footer{
-text-align:center;
-padding:20px;
-background:#111827;
-margin-top:20px;
+button:hover{filter:brightness(1.05)}
+#adTop, #adMiddle, #adRight{
+  min-height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+}
+.messages{
+  max-height:220px;
+  overflow-y:auto;
+  margin-bottom:10px;
+}
+.msg{
+  background:var(--panel);
+  border-radius:8px;
+  padding:8px;
+  margin-bottom:6px;
+  font-size:13px;
+}
+.login{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+.login-box{
+  width:min(90%, 360px);
+  background:var(--panel-2);
+  padding:24px;
+  border-radius:16px;
+  border:1px solid var(--border);
+}
+.loading{
+  color:var(--muted);
+}
+@media (max-width: 900px){
+  .sidebar{display:none}
+  .right{display:none}
 }
 </style>
-
 </head>
-
 <body>
 
-<header>
-<h1>⚡ XTREME HUB</h1>
-<p>News • AI • Viral Updates</p>
-</header>
-
-<nav>
-<span>News</span>
-<span>AI</span>
-<span>Trending</span>
-</nav>
-
-<!-- 🔝 TOP AD -->
-<div class="ad">Top Banner Ad</div>
-
-<div class="container">
-
-<h2>🔥 Trending Nigeria & Africa News</h2>
-<div id="news"></div>
-
-<!-- 📰 MID AD -->
-<div class="ad">🔥 Sponsored Content</div>
-
-<h2>🤖 AI Assistant</h2>
-
-<div class="ai">
-<input id="q" placeholder="Ask WAEC, JAMB, EFCC...">
-<button onclick="askAI()">Ask AI</button>
-<p id="a"></p>
+<div class="login" id="loginOverlay">
+  <div class="login-box">
+    <h2>Welcome to Xtreme Hub</h2>
+    <p class="meta">Enter a username to join the community.</p>
+    <input id="username" placeholder="Choose a username">
+    <button onclick="login()">Enter Xtreme Hub</button>
+  </div>
 </div>
 
-<!-- 📲 SHARE VIRAL SYSTEM -->
-<button onclick="shareNews()">📲 Share This Site</button>
+<div class="app">
 
+  <aside class="sidebar">
+    <div class="logo">⚡ Xtreme Hub</div>
+    <div class="tagline">News • AI • Music • Movies • Chat</div>
+
+    <div class="channel active"># breaking-news</div>
+    <div class="channel"># waec-updates</div>
+    <div class="channel"># jamb-news</div>
+    <div class="channel"># ai-assistant</div>
+    <div class="channel"># music</div>
+    <div class="channel"># movies</div>
+    <div class="channel"># community-chat</div>
+  </aside>
+
+  <main class="main">
+    <div class="header"># breaking-news</div>
+
+    <div class="content">
+      <section class="feed">
+
+        <div class="card">
+          <h3>🔥 Breaking News</h3>
+          <div class="meta">Aggregated from major Nigerian news sources</div>
+          <input id="search" placeholder="Search headlines..." oninput="filterNews()">
+        </div>
+
+        <div id="news" class="loading">Loading latest headlines...</div>
+
+      </section>
+
+      <aside class="right">
+
+        <div class="card">
+          <h3>🤖 AI Assistant</h3>
+          <input id="aiQuestion" placeholder="Ask WAEC, JAMB, EFCC...">
+          <button onclick="askAI()">Ask AI</button>
+          <p id="aiAnswer" class="meta">Your answer will appear here.</p>
+        </div>
+
+        <div class="card">
+          <h3>💬 Community Chat</h3>
+          <div class="messages" id="messages"></div>
+          <input id="chatInput" placeholder="Type a message...">
+          <button onclick="sendMessage()">Send</button>
+        </div>
+
+        <div class="card">
+          <h3>🎵 Music</h3>
+          <p class="meta">Trending music updates and recommendations.</p>
+        </div>
+
+        <div class="card">
+          <h3>🎬 Movies</h3>
+          <p class="meta">Latest movies and entertainment news.</p>
+        </div>
+
+      </aside>
+    </div>
+  </main>
 </div>
 
-<!-- 🔻 BOTTOM AD -->
-<div class="ad">Bottom Banner Ad</div>
-
-<footer>
-© 2026 Xtreme Hub | All Rights Reserved
-</footer>
-
-<!-- 🌍 AUTO NEWS SYSTEM -->
 <script>
-async function loadNews(){
+let currentUser = "Guest";
+let allNews = [];
 
-const feeds = [
-"http://feeds.bbci.co.uk/news/world/africa/rss.xml",
-"https://www.aljazeera.com/xml/rss/all.xml"
-];
-
-let output = "";
-
-for(let f of feeds){
-try{
-let res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + f);
-let data = await res.json();
-
-data.items.slice(0,10).forEach(n=>{
-
-output += `
-<div class="card">
-<h3 style="margin:0;font-size:16px;">📰 ${n.title}</h3>
-
-<a href="${n.link}" target="_blank" style="color:#38bdf8;">
-Read full story
-</a>
-
-<br><br>
-
-<button onclick="shareNews()">Share 🔥</button>
-</div>
-`;
-});
-}catch(e){}
+function login(){
+  const username = document.getElementById('username').value.trim();
+  if(!username) return;
+  currentUser = username;
+  document.getElementById('loginOverlay').style.display = 'none';
+  addSystemMessage(`Welcome, ${currentUser}!`);
+  loadNews();
 }
 
-document.getElementById("news").innerHTML = output;
+function addSystemMessage(text){
+  const box = document.getElementById('messages');
+  box.innerHTML += `<div class="msg"><strong>System:</strong> ${text}</div>`;
+  box.scrollTop = box.scrollHeight;
 }
 
-loadNews();
-setInterval(loadNews, 180000);
-</script>
+function sendMessage(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
 
-<!-- 🤖 AI SYSTEM -->
-<script>
+  const box = document.getElementById('messages');
+  box.innerHTML += `<div class="msg"><strong>${escapeHtml(currentUser)}:</strong> ${escapeHtml(text)}</div>`;
+  box.scrollTop = box.scrollHeight;
+  input.value = '';
+}
+
 function askAI(){
-let q = document.getElementById("q").value.toLowerCase();
-let r = "";
+  const q = document.getElementById('aiQuestion').value.toLowerCase();
+  let answer = 'Ask about WAEC, JAMB, EFCC, police recruitment, or general topics.';
 
-if(q.includes("waec")) r="WAEC is West African exam body.";
-else if(q.includes("jamb")) r="JAMB handles university exams in Nigeria.";
-else if(q.includes("efcc")) r="EFCC fights corruption in Nigeria.";
-else if(q.includes("police")) r="Police recruitment is officially announced.";
-else r="Ask about WAEC, JAMB, EFCC or Nigeria news.";
+  if(q.includes('waec')) answer = 'WAEC conducts secondary school examinations across West Africa.';
+  else if(q.includes('jamb')) answer = 'JAMB manages university entrance examinations in Nigeria.';
+  else if(q.includes('efcc')) answer = 'EFCC investigates financial crimes and corruption.';
+  else if(q.includes('police')) answer = 'Police recruitment updates are announced through official government channels.';
 
-document.getElementById("a").innerText = r;
+  document.getElementById('aiAnswer').textContent = answer;
 }
+
+function escapeHtml(text){
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+async function loadNews(){
+  const feeds = [
+    'https://rss2json.com/api.json?rss_url=https://punchng.com/feed/',
+    'https://rss2json.com/api.json?rss_url=https://www.vanguardngr.com/feed/',
+    'https://rss2json.com/api.json?rss_url=https://guardian.ng/feed/',
+    'https://rss2json.com/api.json?rss_url=https://www.channelstv.com/feed/',
+    'https://rss2json.com/api.json?rss_url=https://www.premiumtimesng.com/feed',
+    'https://rss2json.com/api.json?rss_url=https://dailypost.ng/feed/'
+  ];
+
+  allNews = [];
+
+  for(const url of feeds){
+    try{
+      const res = await fetch(url);
+      const data = await res.json();
+      const source = data.feed?.title || 'News Source';
+
+      (data.items || []).slice(0, 4).forEach(item => {
+        allNews.push({
+          title: item.title,
+          link: item.link,
+          date: item.pubDate || '',
+          source
+        });
+      });
+    }catch(e){
+      console.log('Feed error', e);
+    }
+  }
+
+  renderNews(allNews);
+}
+
+function renderNews(items){
+  const container = document.getElementById('news');
+
+  if(!items.length){
+    container.innerHTML = '<div class="card">No news available right now.</div>';
+    return;
+  }
+
+  container.innerHTML = items.map(item => `
+    <div class="card">
+      <div class="badge">${escapeHtml(item.source)}</div>
+      <h3>${escapeHtml(item.title)}</h3>
+      <div class="meta">${escapeHtml(item.date)}</div>
+      <a href="${item.link}" target="_blank" rel="noopener noreferrer">Read Full Story →</a>
+    </div>
+  `).join('');
+}
+
+function filterNews(){
+  const q = document.getElementById('search').value.toLowerCase();
+  const filtered = allNews.filter(item =>
+    item.title.toLowerCase().includes(q) || item.source.toLowerCase().includes(q)
+  );
+  renderNews(filtered);
+}
+
+// Refresh news every 5 minutes
+setInterval(loadNews, 300000);
 </script>
 
-<!-- 📲 VIRAL SHARE SYSTEM -->
-<script>
-function shareNews(){
-let url = window.location.href;
-window.open("https://wa.me/?text=" + encodeURIComponent("Check this news: " + url));
-}
-</script>
+<script src="https://pl29376659.profitablecpmratenetwork.com/53/26/fa/5326facdec20ef14f35719252a7d6a4d.js"></script>
+<script src="https://pl29376660.profitablecpmratenetwork.com/56/40/25/5640255b2df172766967b5fde6f55dc3.js"></script>
 
 </body>
 </html>
